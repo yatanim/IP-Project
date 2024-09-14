@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Maps Direction</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="map"></div>
+    <div id="directions-panel"></div>
+    <div id="inputs">
+        <input type="text" id="start" placeholder="From">
+        <input type="text" id="end" placeholder="To">
+        <button id="submit">Get Directions</button>
+    </div>
+    <script src="script.js">
+        
+    </script>
+    <script>
+        const dotenv = require('dotenv');
+        const api =process.env.GOOGLE_MAPS_API_KEY;
+        console.log(api);
+    </script>
+    <script async defer
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyOKwbk-L5XoodFJB1ajcd7HOHvH_Tee4&libraries=places&callback=initMap">
+    </script>
+</body>
+</html>

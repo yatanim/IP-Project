@@ -1,0 +1,108 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+      .container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        gap: 0.5rem;
+      }
+
+      div > img {
+        width: 300px;
+        height: 300px;
+        border: 2px solid black;
+        object-fit: cover;
+        border-radius: 20px;
+        margin: 0 auto;
+      }
+
+      .item {
+        background-color: lightgrey;
+        padding: 1rem 15rem;
+        border-radius: 20px;
+        color: black;
+        position: relative;
+      }
+
+      .item::before {
+        content: "";
+        position: absolute;
+        width: 10px;
+        height: 10px;
+        border: 2px solid black;
+        border-left: none;
+        border-top: none;
+        margin-left: 20px;
+        top: 33px;
+        left: 0;
+        rotate: -45deg;
+        transition: margin-left 0.1s ease;
+      }
+
+      .item:after {
+        content: "";
+        position: absolute;
+        top: 38px;
+        left: 0px;
+        width: 15px;
+        height: 2px;
+        transform: scaleX(0);
+        margin-left: 24px;
+        background-color: black;
+        transition: transform 0.1s ease;
+        transform-origin: left;
+        border-radius: 5px;
+      }
+      .item:hover::after {
+        transform: scaleX(1);
+      }
+
+      .item:hover::before {
+        margin-left: 27px;
+      }
+    </style>
+    <div class="container">
+      <img src="https://www.observerbd.com/2024/07/02/ob_1719919566.jpg" alt="" />
+      <div class="item item-1">
+        <p>New Market</p>
+      </div>
+      <span>&#8597;</span>
+      <div class="item item-2">
+        <p>Laldighi</p>
+      </div>
+      <span>&#8597;</span>
+      <div class="item item-3">
+        <p>Sriraj Udyan Pella Road</p>
+      </div>
+      <span>&#8597;</span>
+      <div class="item item-4">
+        <p>Chawk Bazar</p>
+      </div>
+      <span>&#8597;</span>
+      <div class="item item-5">
+        <p>Kaptan Bazar</p>
+      </div>
+      <span>&#8597;</span>
+      <div class="item item-6">
+        <p>Badamtala</p>
+      </div>
+      <span>&#8597;</span>
+      <div class="item item-7">
+        <p>Bahaddarhat</p>
+      </div>
+      <span>&#8597;</span>
+    </div>
+  </body>
+</html>

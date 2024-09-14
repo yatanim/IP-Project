@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="dashboard-style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: url('https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRmQofLDc3LE6rt4z5_729y6wsmNcw6QPrwmg&s') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        .dashboard-container {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            margin: 50px auto;
+            width: 400px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .form-container {
+            margin: 20px 0;
+        }
+
+        select, input, button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        h2 {
+            margin-bottom: 10px;
+        }
+
+        .logout-btn {
+            background-color: #ff6347;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.9;
+        }
+    </style>
+</head>
+<body>
+    <div class="dashboard-container" style="width:600px">
+        <h1>Welcome to the Admin Dashboard</h1>
+        <p>You have successfully logged in as an admin.</p>
+
+        <!-- Fare Update Section -->
+        <div class="form-container">
+            <h2>Update Fare</h2>
+            <label for="fromUpdate">From Location:</label>
+            <select id="fromUpdate">
+                <option value="">Select location...</option>
+                <option value="CUET Main Gate, Pahartali, Bangladesh">CUET Main Gate, Pahartali, Bangladesh</option>
+                <option value="Kaptai Rasta Matha, R163, Chattogram, Bangladesh">Kaptai Rasta Matha, R163, Chattogram, Bangladesh</option>
+                <option value="Bahaddarhat, Chattogram, Bangladesh">Bahaddarhat, Chattogram, Bangladesh</option>
+                <option value="2 no gate Finlay, Chattogram, Bangladesh">2 no gate Finlay, Chattogram, Bangladesh</option>
+                <option value="Muradpur, Chattogram, Bangladesh">Muradpur, Chattogram, Bangladesh</option>
+                <option value="GEC More, Chattogram, Bangladesh">GEC More, Chattogram, Bangladesh</option>
+            </select>
+
+            <label for="toUpdate">To Location:</label>
+            <select id="toUpdate">
+                <option value="">Select location...</option>
+                <option value="CUET Main Gate, Pahartali, Bangladesh">CUET Main Gate, Pahartali, Bangladesh</option>
+                <option value="Kaptai Rasta Matha, R163, Chattogram, Bangladesh">Kaptai Rasta Matha, R163, Chattogram, Bangladesh</option>
+                <option value="Bahaddarhat, Chattogram, Bangladesh">Bahaddarhat, Chattogram, Bangladesh</option>
+                <option value="2 no gate Finlay, Chattogram, Bangladesh">2 no gate Finlay, Chattogram, Bangladesh</option>
+                <option value="Muradpur, Chattogram, Bangladesh">Muradpur, Chattogram, Bangladesh</option>
+                <option value="GEC More, Chattogram, Bangladesh">GEC More, Chattogram, Bangladesh</option>
+            </select>
+
+            <label for="busFare">Bus Fare:</label>
+            <input type="text" style="width: 96%;" id="busFare" placeholder="Enter bus fare (optional)">
+
+            <label for="cngFare">CNG Fare:</label>
+            <input type="text" style="width: 96%;" id="cngFare" placeholder="Enter CNG fare (optional)">
+
+            <button onclick="updateFare()">Update Fare</button>
+        </div>
+
+        <!-- Fare Delete Section -->
+        <div class="form-container">
+            <h2>Delete Fare</h2>
+            <label for="fromDelete">From Location:</label>
+            <select id="fromDelete">
+                <option value="">Select location...</option>
+                <option value="CUET Main Gate, Pahartali, Bangladesh">CUET Main Gate, Pahartali, Bangladesh</option>
+                <option value="Kaptai Rasta Matha, R163, Chattogram, Bangladesh">Kaptai Rasta Matha, R163, Chattogram, Bangladesh</option>
+                <option value="Bahaddarhat, Chattogram, Bangladesh">Bahaddarhat, Chattogram, Bangladesh</option>
+                <option value="2 no gate Finlay, Chattogram, Bangladesh">2 no gate Finlay, Chattogram, Bangladesh</option>
+                <option value="Muradpur, Chattogram, Bangladesh">Muradpur, Chattogram, Bangladesh</option>
+                <option value="GEC More, Chattogram, Bangladesh">GEC More, Chattogram, Bangladesh</option>
+            </select>
+
+            <label for="toDelete">To Location:</label>
+            <select id="toDelete">
+                <option value="">Select location...</option>
+                <option value="CUET Main Gate, Pahartali, Bangladesh">CUET Main Gate, Pahartali, Bangladesh</option>
+                <option value="Kaptai Rasta Matha, R163, Chattogram, Bangladesh">Kaptai Rasta Matha, R163, Chattogram, Bangladesh</option>
+                <option value="Bahaddarhat, Chattogram, Bangladesh">Bahaddarhat, Chattogram, Bangladesh</option>
+                <option value="2 no gate Finlay, Chattogram, Bangladesh">2 no gate Finlay, Chattogram, Bangladesh</option>
+                <option value="Muradpur, Chattogram, Bangladesh">Muradpur, Chattogram, Bangladesh</option>
+                <option value="GEC More, Chattogram, Bangladesh">GEC More, Chattogram, Bangladesh</option>
+            </select>
+
+            <button onclick="deleteFare()">Delete Fare</button>
+        </div>
+
+        <!-- Logout Button -->
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+
+    <script>
+        const apiUrl = 'http://localhost:7000'; // Replace with your backend server URL
+
+        // Function to update fare
+        async function updateFare() {
+            const from = document.getElementById('fromUpdate').value;
+            const to = document.getElementById('toUpdate').value;
+            const bus = document.getElementById('busFare').value;
+            const cng = document.getElementById('cngFare').value;
+
+            if (!from || !to) {
+                alert('Please provide both From and To locations');
+                return;
+            }
+
+            const data = {
+                from: from,
+                to: to,
+                ...(bus && { bus: bus }), // Include only if bus fare is provided
+                ...(cng && { cng: cng })  // Include only if cng fare is provided
+            };
+
+            try {
+                const response = await fetch(`${apiUrl}/updateFare`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alert('Fare updated successfully');
+                } else {
+                    alert(`Error: ${result.error}`);
+                }
+            } catch (error) {
+                console.error('Error updating fare:', error);
+                alert('Failed to update fare');
+            }
+        }
+
+        // Function to delete fare
+        async function deleteFare() {
+            const from = document.getElementById('fromDelete').value;
+            const to = document.getElementById('toDelete').value;
+
+            if (!from || !to) {
+                alert('Please provide both From and To locations');
+                return;
+            }
+
+            const data = {
+                from: from,
+                to: to,
+            };
+
+            try {
+                const response = await fetch(`${apiUrl}/deleteFare`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data),
+                });
+
+                const result = await response.json();
+                if (result.success) {
+                    alert('Fare deleted successfully');
+                } else {
+                    alert(`Error: ${result.error}`);
+                }
+            } catch (error) {
+                console.error('Error deleting fare:', error);
+                alert('Failed to delete fare');
+            }
+        }
+
+        // Logout function
+        function logout() {
+            window.location.href = "index.html"; // Redirect to login page on logout
+        }
+    </script>
+</body>
+</html>

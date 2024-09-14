@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transport Fare Calculator</title>
+    <link rel="stylesheet" href="css/style2.css">
+    <link rel="stylesheet" href="css/utils2.css">
+    <link rel="stylesheet" href="css/responsive2.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo"><img src="wayfinder.png" alt="WayFinder Logo"></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="findtransport.html">Find Transport</a></li>
+                <li><a href="transportroutes.html">Transport Routes</a></li>
+                <li><a href="aboutus.html">About Us</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <div class="container">
+            <h1>Discover Your Destination</h1>
+            <div class="search-box">
+                <label for="departure">Select Your Location:</label>
+                <select id="departure" name="departure">
+                    <!-- Options -->
+                    <option value="">Select location...</option>
+                    <option value="CUET Main Gate, Pahartali, Bangladesh">CUET Main Gate, Pahartali, Bangladesh</option>
+                    <option value="Kaptai Rasta Matha, R163, Chattogram, Bangladesh">Kaptai Rasta Matha, R163, Chattogram, Bangladesh</option>
+                    <option value="Bahaddarhat, Chattogram, Bangladesh">Bahaddarhat, Chattogram, Bangladesh</option>
+                    <option value="2 no gate Finlay, Chattogram, Bangladesh">2 no gate Finlay, Chattogram, Bangladesh</option>
+                    <option value="Muradpur, Chattogram, Bangladesh">Muradpur, Chattogram, Bangladesh</option>
+                    <option value="GEC More, Chattogram, Bangladesh">GEC More, Chattogram, Bangladesh</option>
+                </select>
+            </div>
+            <div class="search-box">
+                <label for="destination">Select Your Destination:</label>
+                <select id="destination" name="destination">
+                    <!-- Options -->
+                    <option value="">Select location...</option>
+                    <option value="CUET Main Gate, Pahartali, Bangladesh">CUET Main Gate, Pahartali, Bangladesh</option>
+                    <option value="Kaptai Rasta Matha, R163, Chattogram, Bangladesh">Kaptai Rasta Matha, R163, Chattogram, Bangladesh</option>
+                    <option value="Bahaddarhat, Chattogram, Bangladesh">Bahaddarhat, Chattogram, Bangladesh</option>
+                    <option value="2 no gate Finlay, Chattogram, Bangladesh">2 no gate Finlay, Chattogram, Bangladesh</option>
+                    <option value="Muradpur, Chattogram, Bangladesh">Muradpur, Chattogram, Bangladesh</option>
+                    <option value="GEC More, Chattogram, Bangladesh">GEC More, Chattogram, Bangladesh</option>
+                </select>
+            </div>
+            <button id="submit" type="button">Search</button>
+            <div id="map" style="height: 500px; width: 100%; margin-top: 20px;"></div>
+            <div id="directions-panel"></div>
+            
+            <!-- Added div for displaying distance -->
+            <div id="infoContainer">
+                <div id="distance" class="info-box"></div>
+                <!-- Added divs for displaying fare information -->
+                <div id="busFare" class="info-box"></div>
+                <div id="cngFare" class="info-box"></div>
+            </div>
+        </div>
+    </main>
+    <footer class="flex-all-center">
+        <p>Copyright &copy; WayFinder.com</p>
+    </footer>
+    <script src="script.js"></script>
+    <script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDyOKwbk-L5XoodFJB1ajcd7HOHvH_Tee4&libraries=places&callback=initMap">
+    </script>
+</body>
+</html>
